@@ -29,27 +29,27 @@ make v8rocket &lt;VARS&gt;
 
 VARS should be:
 
-* ROCKET_HOME=<rocket project directory>
+* ROCKET_HOME=&lt;rocket project directory&gt;
  * Defaults to cwd
  * Alternatively, you can directly specify ROCKET_CXXFLAGS and ROCKET_SRCPATH, in which case make sure ROCKET_CXXFLAGS has the include path for rocket, and ROCKET_SRCPATH is the Source sub-directory in the project's directory
-* V8_HOME=<v8 project directory>
+* V8_HOME=&lt;v8 project directory&gt;
  * Defaults to cwd
  * Alternatively, you can directly specify V8_CXXFLAGS, in which case make sure V8_CXXFLAGS has the include path for v8
-* V8JUICE_HOME=<v8-juice project directory>
+* V8JUICE_HOME=&lt;v8-juice project directory&gt;
  * Alternatively, you can directly specify V8JUICE_CXXFLAGS, in which case make sure V8JUICE_CXXFLAGS has the include path for v8-juice
-* V8ROCKET_HOME=<v8rocket project directory>
+* V8ROCKET_HOME=&lt;v8rocket project directory&gt;
  * Defaults to cwd, no need to set it if executing from within the project directory
-* V8ROCKET_OBJPATH=<v8rocket object output directory>
+* V8ROCKET_OBJPATH=&lt;v8rocket object output directory&gt;
  * Defaults to cwd
-* V8ROCKET_LIBPATH=<v8rocket library output directory>
+* V8ROCKET_LIBPATH=&lt;v8rocket library output directory&gt;
  * Defaults to cwd
-* CXXFLAGS=<additional C++ FLAGS to be used>
+* CXXFLAGS=&lt;additional C++ FLAGS to be used&gt;
  * Add things like -DSTATIC_LIB here etc., see libRocket docs for more info
  * Add any additional flags for v8, v8-juice etc.
 
 To clean:
 <pre>
-make clean.v8rocket -{SAME VARS AS WHEN BUILDING}-
+make clean.v8rocket &lt;SAME VARS AS WHEN BUILDING&gt;
 </pre>
 
 Example:
