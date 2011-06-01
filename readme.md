@@ -60,7 +60,7 @@ make clean.v8rocket V8_HOME=../projects/v8 V8JUICE_HOME=../projects/v8-juice V8R
 make v8rocket V8_HOME=../projects/v8 V8JUICE_HOME=../projects/v8-juice V8ROCKET_HOME=./ CXXFLAGS="-DSTATIC_LIB"
 </pre>
 
-You can easily compile this in VS:
+You can easily compile this in MSVC:
 
 1. Add all the files in the Source directory into a project.
 1. Add the include directories of v8, v8-juice, v8rocket and libRocket to the project's include directories.
@@ -77,15 +77,17 @@ Make sure your project has access to the following project's include directores:
 * libRocket
 * v8rocket (this project)
 
-And of course link with libv8rocket.a
+And of course link with libv8rocket.a (or w/e you name it if in MSVC), and the other libs: v8 , v8-juice libRocket, order might matter.
 
 ## Example usage
 
 Initalize Rocket as usual. Then call Rocket::Core::JS::Initialise() immediately afterward:
 <pre>
-	Rocket::Core::Initialise();
-	Rocket::Controls::Initialise();
+  
+  Rocket::Core::Initialise();
+  Rocket::Controls::Initialise();
   Rocket::Core::JS::Initialise();
+  
 </pre>
 
 Create your Core::Context and load your document as usual.
@@ -144,18 +146,18 @@ And finally, to execute Javascript:
       //The utility function Browser::ReportException is provided; it outputs to the specified
       // output stream, and takes the TryCatch as the first argument. You can provide your
       // own function object as well, and/or create them using boost::bind, or std::bind etc.
-      boost::bind(BrowserT::ReportException<std::ostream>, _1, boost::ref(std::cout)));
+      boost::bind(BrowserT::ReportException&lt;std::ostream&gt;, _1, boost::ref(std::cout)));
     
     //Run the script
     v8::Handle<v8::Value> result = browser->run(script,
       //See above for explanation of this parameter
-      boost::bind(Browser::ReportException<std::ostream>, _1, boost::ref(std::cout)) );
+      boost::bind(Browser::ReportException&lt;std::ostream&gt;, _1, boost::ref(std::cout)) );
   }
   //Now that we are out of scope, all the Handles will be reaped.
   //Don't just store a copy of one of the above Handles; it will be invalid.
   //If you want to store a compiled script accross calls, or otherwise outside this scope,
   // you would need to use a Persistent handle, and allocate it using
-  // v8::Persistent<v8::Script>::New(script)
+  // v8::Persistent&lt;v8::Script&gt;::New(script)
 </pre>
 
 As for the Javascript itself, only the following are provided:
