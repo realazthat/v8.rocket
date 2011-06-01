@@ -3,6 +3,7 @@
 
 #include <Rocket/Core.h>
 
+#include <Rocket/Core/JS/detail/rocket/RocketScope.h>
 #include <Rocket/Core/JS/detail/v8/String.h>
 
 #include <v8/juice/ClassWrap.h>

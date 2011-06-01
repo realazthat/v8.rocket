@@ -20,7 +20,7 @@ struct RocketScope{
 
 
 
-  RocketScope(const RocketScope& other)
+  explicit RocketScope(const RocketScope& other)
     : ref(other.ref)
   {
     aquire();
@@ -31,7 +31,7 @@ struct RocketScope{
   {}
   
   RocketScope& operator=(const RocketScope& other) {
-    if (ref == other.ref)
+    if (this == &other)
       return *this;
     
     ///Make certain we don't go down to zero refs,
@@ -60,22 +60,22 @@ struct RocketScope{
   }
   
   RefT& operator*(){
-    assert(ref != NULL);
+    assert(ref);
     return *ref;
   }
   
   const RefT& operator*() const{
-    assert(ref != NULL);
+    assert(ref);
     return *ref;
   }
   
   RefT* operator->(){
-    assert(ref != NULL);
+    assert(ref);
     return ref;
   }
   
   const RefT* operator->() const{
-    assert(ref != NULL);
+    assert(ref);
     return ref;
   }
   

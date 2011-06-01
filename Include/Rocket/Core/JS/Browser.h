@@ -8,14 +8,10 @@
 
 namespace Rocket{ namespace Core{ namespace JS{
 
-namespace{
-
-void Initialize();
-
-}//anonymous namespace
 
 struct Browser{
   Browser(const RocketScope<Core::Context>& context, const RocketScope<Core::ElementDocument>& body);
+  ~Browser();
 public:
 //Access to rocket
   /**
@@ -39,11 +35,12 @@ public:
    * Utility JS exception reporter, doesn't report anything.
    * Use together with boost::bind, to make a valid function object.
    */
-  template<typename OutT>
   static void ReportException(const v8::TryCatch& try_catch);
 
   /**
    * Compiles a script, and returns a handle to the result.
+   * 
+   * Must be called within a valid v8 context scope.
    *
    * @param script_source A v8 string handle containing the javascript.
    * @param script_name The name of the script; usually a filename etc.
@@ -59,6 +56,8 @@ public:
 
   /**
    * Runs a script, and returns a handle to the result.
+   *
+   * Must be called within a valid v8 context scope.
    *
    * @param script A compiled script to run.
    * @param handleTryCatch a function object that takes a v8::TryCatch,
@@ -90,5 +89,6 @@ private:
 
 } } }//namespaces Rocket::Core::JS
 
+#include <Rocket/Core/JS/Browser.inl>
 
 #endif

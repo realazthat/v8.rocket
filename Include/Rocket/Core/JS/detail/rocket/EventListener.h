@@ -3,7 +3,7 @@
 
 #include <Rocket/Core.h>
 
-#include <Rocket/Core/JS/Utility.h>
+#include <Rocket/Core/JS/detail/rocket/Utility.h>
 
 #include <v8.h>
 
@@ -45,7 +45,7 @@ struct EventListener : public Rocket::Core::EventListener{
     v8::Context::Scope context_scope(getV8Context());
     
 // std::cout << __FILE__ ": " << __LINE__ << std::endl;
-    v8::Handle<v8::Value> v8Event = JSRocketWrapperBase::CastToJS(&event);
+    v8::Handle<v8::Value> v8Event = JS::juice::getV8HandleFromRocketWrapper(&event, v8::Handle<v8::Value>());
 // std::cout << __FILE__ ": " << __LINE__ << std::endl;
     assert(!v8Event.IsEmpty());
     
@@ -54,7 +54,7 @@ struct EventListener : public Rocket::Core::EventListener{
       v8Event
     };
 // std::cout << __FILE__ ": " << __LINE__ << std::endl;
-    v8::Handle<v8::Object> v8element = JSRocketWrapperBase::CastToJS(m_element);
+    v8::Handle<v8::Object> v8element = JS::juice::getV8HandleFromRocketWrapper(m_element);
     
     assert(!v8element.IsEmpty());
     

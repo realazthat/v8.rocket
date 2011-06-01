@@ -2,12 +2,14 @@
 #define ROCKET_CORE_JS_BROWSER_CPP
 
 #include <Rocket/Core/JS/Browser.h>
-#include <Rocket/Core/JS/detail/rocket/ElementDocumentWrapper.h>
+
 #include <Rocket/Core/JS/detail/v8/HTMLElementBase.h>
 #include <Rocket/Core/JS/detail/v8/HTMLElementGeneric.h>
 #include <Rocket/Core/JS/detail/v8/HTMLElementList.h>
 #include <Rocket/Core/JS/detail/v8/HTMLDocument.h>
 #include <Rocket/Core/JS/detail/v8/Event.h>
+#include <Rocket/Core/JS/detail/rocket/ElementDocumentWrapper.h>
+#include <Rocket/Core/JS/detail/rocket/Utility.h>
 
 //for LogCallback()
 #include <iostream>
@@ -25,6 +27,8 @@ static v8::Handle<v8::Value> LogCallback(const v8::Arguments& args) {
   return v8::Undefined();
 }
 }//anonymous namespace
+
+
 
 
 Browser::Browser(
@@ -105,12 +109,49 @@ Browser::Browser(
 }
 
 
+Browser::~Browser(){
+  m_v8Context.Dispose();
+  m_v8Context.Clear();
+  m_v8HTMLDocument.Dispose();
+  m_v8HTMLDocument.Clear();
+}
+
+Rocket::Core::Context&
+Browser::
+rocketContext()
+{
+  return *m_rocketContext;
+}
+
+const Rocket::Core::Context&
+Browser::
+rocketContext() const
+{
+  return *m_rocketContext;
+}
+
+v8::Handle<v8::Context>
+Browser::
+v8Context() const
+{
+  return m_v8Context;
+}
+
+
+v8::Handle<v8::Value>
+Browser::
+document() const
+{
+  return m_v8HTMLDocument;
+}
 
 
 
-
-
-
+void
+Browser::
+Browser::ReportException(const v8::TryCatch& try_catch) {
+  //noop
+}
 
 
 
