@@ -1,6 +1,6 @@
 # v8rocket - The HTML/CSS/JS User Interface Library
 
-***v8rocket*** (this project) is a library for integrating v8 with libRocket, and expose the HTML DOM.
+***v8rocket*** (this project) is a library for integrating v8 with libRocket, and to expose the HTML DOM to Javascript.
 
 libRocket (http://librocket.com) is a ***renderer agnostic*** HTML/CSS renderer, useful for creating UIs for games and the like. Hopefully makes assembling a UI a breeze, using existing technology, and thus allowing existing, well used, thoroughly tested tools to be used. It allows easy "theming" via CSS, or even changing the HTML, without having to recompile the game code etc. It allows a fully dynamic layout, that can grow/shrink etc. as needed. The HTML allows the simple CSS Box Model to be used for UI.
 
@@ -250,6 +250,7 @@ Note that input elements etc. are not specialized above HTMLElement, so setting 
 
 ## License (MIT)
  Copyright (c) 2008-2010 CodePoint Ltd, Shift Technology Ltd
+ 
  Copyright (c) 2011 Azriel Fasten
  
  Permission is hereby granted, free of charge, to any person obtaining a copy

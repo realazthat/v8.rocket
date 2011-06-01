@@ -7,11 +7,14 @@
 #include <Rocket/Core/JS/detail/rocket/ElementInstancer.h>
 #include <Rocket/Core/JS/detail/rocket/EventInstancer.h>
 #include <Rocket/Core/JS/detail/rocket/ElementDocumentWrapper.h>
+
+#include <Rocket/Core/JS/detail/v8/HTMLDocument.h>
+#include <Rocket/Core/JS/detail/v8/HTMLElementList.h>
+#include <Rocket/Core/JS/detail/v8/Event.h>
+
 #include <Rocket/Core/JS/detail/v8/HTMLElementBase.h>
 #include <Rocket/Core/JS/detail/v8/HTMLElementGeneric.h>
-#include <Rocket/Core/JS/detail/v8/HTMLElementList.h>
-#include <Rocket/Core/JS/detail/v8/HTMLDocument.h>
-#include <Rocket/Core/JS/detail/v8/Event.h>
+#include <Rocket/Core/JS/detail/v8/HTMLFormElement.h>
 
 #include <Core/ElementTextDefault.h>
 #include <Core/ElementHandle.h>
@@ -58,6 +61,16 @@ void Initialise() {
   
   {
     // using namespace Rocket;
+    
+    Core::Factory::RegisterElementInstancer("form",
+      new JS::ElementInstancer<Controls::ElementForm, JS::juice::HTMLFormElement>)->RemoveReference();
+    
+    // Core::Factory::RegisterElementInstancer("textarea",
+      // new JS::ElementInstancer<Controls::ElementFormControlTextArea, JS::juice::HTMLTextAreaElement>)->RemoveReference();
+    
+    // Core::Factory::RegisterElementInstancer("input",
+      // new JS::ElementInstancer<Controls::ElementFormControlInput, JS::juice::HTMLInputElement>)->RemoveReference();
+    
     Core::Factory::RegisterElementInstancer("textarea",
       new JS::ElementInstancer<Controls::ElementFormControlTextArea, JS::juice::HTMLElementGeneric>)->RemoveReference();
     
