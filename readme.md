@@ -24,7 +24,7 @@ My goal and wish is to be able to leverage existing Javascript libraries that ha
 
 To build:
 <pre>
-make v8rocket <VARS>
+make v8rocket &lt;VARS&gt;
 </pre>
 
 VARS should be:
@@ -49,7 +49,7 @@ VARS should be:
 
 To clean:
 <pre>
-make clean.v8rocket <SAME VARS AS WHEN BUILDING>
+make clean.v8rocket -{SAME VARS AS WHEN BUILDING}-
 </pre>
 
 Example:
@@ -60,6 +60,13 @@ make clean.v8rocket V8_HOME=../projects/v8 V8JUICE_HOME=../projects/v8-juice V8R
 make v8rocket V8_HOME=../projects/v8 V8JUICE_HOME=../projects/v8-juice V8ROCKET_HOME=./ CXXFLAGS="-DSTATIC_LIB"
 </pre>
 
+You can easily compile this in VS:
+
+1. Add all the files in the Source directory into a project.
+1. Add the include directories of v8, v8-juice, v8rocket and libRocket to the project's include directories.
+1. Add the libRocket Source directory to the include path. Normally you wouldn't do this, but it contains some header files that are not supposed to be exposed in the Include directory, but since we are implementating a wrapper, we need access to. No need to do this for projects that **use** v8rocket, just when compiling v8rocket itself.
+1. Add any definitions, such as /DSTATIC_LIB etc.
+
 
 ## Integrating into your project
 Make sure your project has access to the following project's include directores:
@@ -69,6 +76,8 @@ Make sure your project has access to the following project's include directores:
  * Warning: There is/was a major bug in v8-juice in certain versions that would result in v8 catching unreaped v8 objects and asserting (and thus crashing). See http://code.google.com/p/v8-juice/issues/detail?id=27.
 * libRocket
 * v8rocket (this project)
+
+And of course link with libv8rocket.a
 
 ## Example usage
 
