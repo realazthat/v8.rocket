@@ -2,7 +2,7 @@
 
 ***v8rocket*** (this project) is a library for integrating v8 with libRocket, and expose the HTML DOM.
 
-libRocket (http://librocket.com) is a ***renderer agnostic*** HTML/CSS renderer, useful for creating UIs for games and the like. Hopefully makes assembling a UI a breeze, using existing technology, and thus allowing existing, well used, thoroghly tested tools to be used. It allows easy "theming" via CSS, or even changing the HTML, without having to recompile the game code etc. It allows a fully dynamic layout, that can grow/shrink etc. as needed. The HTML allows the simple CSS Box Model to be used for UI.
+libRocket (http://librocket.com) is a ***renderer agnostic*** HTML/CSS renderer, useful for creating UIs for games and the like. Hopefully makes assembling a UI a breeze, using existing technology, and thus allowing existing, well used, thoroughly tested tools to be used. It allows easy "theming" via CSS, or even changing the HTML, without having to recompile the game code etc. It allows a fully dynamic layout, that can grow/shrink etc. as needed. The HTML allows the simple CSS Box Model to be used for UI.
 v8 (http://code.google.com/p/v8/) is a ***fast*** Javascript engine, used by the Chromium browser to execute Javascript.
 
 My goal and wish is to be able to leverage existing Javascript libraries that have revolutionized web development over the years, such as jQuery (http://jquery.com/).
@@ -10,7 +10,7 @@ My goal and wish is to be able to leverage existing Javascript libraries that ha
 ## 3rd-party libraries
 
 * libRocket (http://librocket.com), (https://github.com/lloydw/libRocket)
- * Thats what this is all about
+ * That's what this is all about
 * v8 (http://code.google.com/p/v8/)
  * The v8 Javascript engine
 * v8-juice (http://code.google.com/p/v8-juice/)
