@@ -25,7 +25,7 @@ void
 ElementDocumentWrapper::
 setDOMHTMLDocument(JS::juice::HTMLDocument* doc)
 {
-  document = document;
+  document = doc;
 }
 
 

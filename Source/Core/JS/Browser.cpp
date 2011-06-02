@@ -43,7 +43,7 @@ Browser::Browser(
   
   assert(docWrapper);
 
-
+std::cout << "docWrapper: " << docWrapper << std::endl;
 
   //v8 init
   {
@@ -96,6 +96,8 @@ Browser::Browser(
         
         JS::juice::HTMLDocument* jsDocument
           = v8::juice::convert::CastFromJS<JS::juice::HTMLDocument>(m_v8HTMLDocument);
+        
+        assert(jsDocument);
         
         //FIXME: check that m_v8HTMLDocument will always last longer than
         docWrapper->setDOMHTMLDocument(jsDocument);

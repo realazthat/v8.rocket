@@ -38,6 +38,7 @@ HTMLDocument::getCW() {
   cw.Set( "createComment", ICM::M1::Invocable<v8::Handle<v8::Value>, const Core::String&, &HTMLDocument::createComment>);
   cw.Set( "createElement", ICM::M1::Invocable<v8::Handle<v8::Value>, const Core::String&, &HTMLDocument::createElement>);
   cw.Set( "createTextNode", ICM::M1::Invocable<v8::Handle<v8::Value>, const Core::String&, &HTMLDocument::createTextNode>);
+  cw.Set( "createDocumentFragment", ICM::M0::Invocable<v8::Handle<v8::Value>, &HTMLDocument::createDocumentFragment>);
   cw.Set( "getElementById", ICM::M1::Invocable<v8::Handle<v8::Value>, const Core::String&, &HTMLDocument::getElementById>);
   cw.Set( "getElementsByTagName", ICM::M1::Invocable<v8::Handle<v8::Value>, const Core::String&, &HTMLDocument::getElementsByTagName>);
   cw.Set( "write", ICM::M1::Invocable<void, const Core::String&, &HTMLDocument::write>);
@@ -105,7 +106,9 @@ v8::Handle<v8::Value> HTMLDocument::documentElement() {
 
 
 
-v8::Handle<v8::Value> HTMLDocument::createElement(const Core::String& tag)
+v8::Handle<v8::Value>
+HTMLDocument::
+createElement(const Core::String& tag)
 {
   v8::HandleScope handle_scope;
   
@@ -113,7 +116,9 @@ v8::Handle<v8::Value> HTMLDocument::createElement(const Core::String& tag)
 }
 
 
-v8::Handle<v8::Value> HTMLDocument::createComment(const Core::String& comment)
+v8::Handle<v8::Value>
+HTMLDocument::
+createComment(const Core::String& comment)
 {
 
   v8::HandleScope handle_scope;
@@ -123,11 +128,23 @@ v8::Handle<v8::Value> HTMLDocument::createComment(const Core::String& comment)
   return handle_scope.Close(JS::juice::getV8HandleFromRocketWrapper(getRocket()->CreateTextNode("<!-- " + comment + " -->"), v8::Null()));
 }
 
-v8::Handle<v8::Value> HTMLDocument::createTextNode(const Core::String& text)
+v8::Handle<v8::Value>
+HTMLDocument::
+createTextNode(const Core::String& text)
 {
   v8::HandleScope handle_scope;
-  return handle_scope.Close(JS::juice::getV8HandleFromRocketWrapper(getRocket()->CreateTextNode (text), v8::Null()));
+  return handle_scope.Close(JS::juice::getV8HandleFromRocketWrapper(getRocket()->CreateTextNode(text), v8::Null()));
 }
+
+v8::Handle<v8::Value>
+HTMLDocument::
+createDocumentFragment()
+{
+  v8::HandleScope handle_scope;
+  
+  return handle_scope.Close(JS::juice::getV8HandleFromRocketWrapper(getRocket()->CreateElement("div"), v8::Null()));
+}
+
 
 v8::Handle<v8::Value> HTMLDocument::getElementById(const Core::String& elementId)
 {
@@ -135,7 +152,9 @@ v8::Handle<v8::Value> HTMLDocument::getElementById(const Core::String& elementId
   return handle_scope.Close(JS::juice::getV8HandleFromRocketWrapper(getRocket()->GetElementById(elementId), v8::Null()));
 }
 
-v8::Handle<v8::Value> HTMLDocument::getElementsByTagName(const Core::String& tagname)
+v8::Handle<v8::Value>
+HTMLDocument::
+getElementsByTagName(const Core::String& tagname)
 {
   v8::HandleScope handle_scope;
   

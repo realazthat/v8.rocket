@@ -2,16 +2,10 @@
 #define ROCKET_JS_DETAIL_GLUE_HTMLELEMENTTEMPLATE_H
 
 
-#include <Rocket/JS/HTMLElementBase.h>
-
 #include <v8/juice/ClassWrap.h>
 #include <v8/juice/convert.h>
 
 namespace v8{ namespace juice{
-namespace convert{
-
-}//namespace convert
-
 namespace cw{
 
 

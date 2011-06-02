@@ -29,6 +29,7 @@ protected:
   explicit HTMLElementTemplate(ElementT* element_);
   
   self_type& operator=(const self_type& other);
+private:
   ElementT* element;
 };
 

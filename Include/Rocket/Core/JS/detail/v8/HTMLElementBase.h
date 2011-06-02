@@ -36,7 +36,6 @@ public:
   virtual v8::Handle<v8::Value> ownerDocument();
   virtual v8::Handle<v8::Value> parentNode();
   virtual v8::Handle<v8::Value> previousSibling();
-  // virtual int& ownerDocument();
 public:
   //Getters/Setters
   virtual void id(const Core::String& rml);
@@ -64,7 +63,7 @@ public:
   // detachEvent(eventType, function)
   // dispatchEvent(eventObject)
   virtual void focus();
-  virtual Core::String getAttribute(const Core::String& attributeName);
+  virtual v8::Handle<v8::Value> getAttribute(const Core::String& attributeName);
   // getElementsByClassName(classes)
   virtual v8::Handle<v8::Value> getElementsByTagName(const Core::String& tagname);
   virtual v8::Handle<v8::Value> getElementById(const Core::String& id);

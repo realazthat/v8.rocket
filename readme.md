@@ -1,12 +1,25 @@
-# v8rocket - The HTML/CSS/JS User Interface Library
+# v8rocket - The XHTML/CSS/JS User Interface Library
 
-***v8rocket*** (this project) is a library for integrating v8 with libRocket, and to expose the HTML DOM to Javascript.
+***v8rocket*** (this project) is a library for integrating v8 with libRocket, and to expose the XHTML DOM to Javascript.
 
-libRocket (http://librocket.com) is a ***renderer agnostic*** HTML/CSS renderer, useful for creating UIs for games and the like. Hopefully makes assembling a UI a breeze, using existing technology, and thus allowing existing, well used, thoroughly tested tools to be used. It allows easy "theming" via CSS, or even changing the HTML, without having to recompile the game code etc. It allows a fully dynamic layout, that can grow/shrink etc. as needed. The HTML allows the simple CSS Box Model to be used for UI.
+libRocket (http://librocket.com) is a ***renderer agnostic*** XHTML/CSS renderer, useful for creating UIs for games and the like. Hopefully makes assembling a game UI a breeze.
 
 v8 (http://code.google.com/p/v8/) is a ***fast*** Javascript engine, used by the Chromium browser to execute Javascript.
 
+Advantages of v8rocket:
+
+- Renderer agnostic: libRocket spits out 2D vertices and textures, which can be rendered to almost anything.
+- Input agnostic: libRocket does not capture input; the application can send input to libRocket from anywhere.
+- Use existing layout technology, the simple intuitive CSS Box Model to be used for UI.
+- Use of standardized XHTML/CSS to describe layout allows existing, well used, and thoroughly tested tools to be used. For example, perhaps one could use jQuery and other Javascript libraries to script the UI.
+- Allows easy "theming" via CSS, or even changing the XHTML, without having to recompile the game code etc.
+- Allows a fully dynamic layout, that can grow/shrink etc. as needed.
+- It can make it easier to implement some sort of HIG, as opposed to adhoc GUI which appears in commonly in 3D rendered applications.
+- One can possibly expose an API for their application, to enable scripting from v8, which can be useful for RAD.
+
 My goal and wish is to be able to leverage existing Javascript libraries that have revolutionized web development over the years, such as jQuery (http://jquery.com/).
+
+
 
 ## 3rd-party libraries
 
@@ -121,19 +134,21 @@ Create the Browser object like so:
 
 And finally, to execute Javascript:
 <pre>
-//You can probably put this anywhere, I put this in my keyboard handler, and execute it on a certain key
+//You can probably put this anywhere, I put this in my keyboard handler, and execute it on a certain key.
   {
     typedef Rocket::Core::JS::Browser Browser;
     
-    //I think this must be somewhere up the stack in order to do anything v8, dunno
+    //I think this must be somewhere up the stack in order to do anything v8, dunno.
     v8::Locker locker;
     
     //All handles created below will be reaped when this is destroyed
     v8::HandleScope handle_scope;
     
     //In order to do anything v8, we must be inside a valid v8 context, this will make the rest
-    // of this cope in our browser's v8 context
+    // of this cope in our browser's v8 context.
     v8::Context::Scope context_scope(browser->v8Context());
+    
+    const char* filename = "script.js";
     
     //I load this string from a file, see v8 docs and examples on how to create strings etc.
     v8::Handle<v8::String> script_source = v8::String::New("document.getElementById('output').innerHTML = \"CAN YOU SEE ME\"");
@@ -141,7 +156,8 @@ And finally, to execute Javascript:
     assert(!script_source.IsEmpty());
     
     //Compile the script
-    v8::Handle<v8::Script> script = browser->compile(ReadFile(filename),
+    v8::Handle<v8::Script> script = browser->compile(script_source,
+      //I *think* this is for identifying the script in case of debugging.
       v8::String::New(filename),
       //This is using boost::bind to make a function object that takes a v8::TryCatch
       //The utility function Browser::ReportException is provided; it outputs to the specified
@@ -149,16 +165,19 @@ And finally, to execute Javascript:
       // own function object as well, and/or create them using boost::bind, or std::bind etc.
       boost::bind(BrowserT::ReportException&lt;std::ostream&gt;, _1, boost::ref(std::cout)));
     
-    //Run the script
+    if (script.IsEmpty())
+      return;
+    
+    //Run the script.
     v8::Handle<v8::Value> result = browser->run(script,
-      //See above for explanation of this parameter
+      //See above for explanation of this parameter.
       boost::bind(Browser::ReportException&lt;std::ostream&gt;, _1, boost::ref(std::cout)) );
   }
   //Now that we are out of scope, all the Handles will be reaped.
   //Don't just store a copy of one of the above Handles; it will be invalid.
   //If you want to store a compiled script accross calls, or otherwise outside this scope,
   // you would need to use a Persistent handle, and allocate it using
-  // v8::Persistent&lt;v8::Script&gt;::New(script)
+  // v8::Persistent&lt;v8::Script&gt;::New(script).
 </pre>
 
 As for the Javascript itself, only the following are provided:
@@ -223,30 +242,6 @@ When I am satisfied that this seems to work for different Javascript libraries a
 ## Don'ts:
 - Don't use rocket debugger (don't include Core/Debugger.h), or perhaps that ok, but don't initalize the context with the debugger
 
-
-## Status
-I am currently trying to get jQuery selectors running. Loading jQuery finally does not give errors, however only by-id and perhaps by-tag selectors are working right now. Also events like click() seem to be working.
-
-So for now, I am sort of using jQuery as a benchmark of the DOM implementation.
-
-Note that input elements etc. are not specialized above HTMLElement, so setting their value property is useless for now (Wrap controls TODO).
-
-## TODO
-
-- Warn about v8-juice version
-- Wrap controls
-- Implement removeEventListener
-- Implement/Use EventListenerInstancer?
-- Finish DOM (of course)
-- Test suites?
-- Example
-- Example html/javascript
-- Script tag
-
-## WORKAROUNDS
-- I don't think it is possible to get access to the HEAD tag etc. in libRocket
-- In libRocket, ElementDocument is the BODY tag; in DOM, HTMLDocument is usually an HTML tag (equivelent to #root, which here is a generic element)
-- In libRocket, GetOwnerDocument() returns the BODY tag, in DOM, ownerDocument points to the HTMLDocument
 
 ## License (MIT)
  Copyright (c) 2008-2010 CodePoint Ltd, Shift Technology Ltd

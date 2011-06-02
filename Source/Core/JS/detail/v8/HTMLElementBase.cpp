@@ -108,7 +108,7 @@ HTMLElementBase::populate(v8::juice::cw::ClassWrap<T>& cw) {
   cw.Set( "cloneNode", ICM::M1::template Invocable<v8::Handle<v8::Value>, bool, &HTMLElementBase::cloneNode>);
   cw.Set( "focus", ICM::M0::template Invocable<void, &HTMLElementBase::focus>);
   cw.Set( "getAttribute",
-    ICM::M1::template Invocable<Core::String, const Core::String&, &HTMLElementBase::getAttribute>);
+    ICM::M1::template Invocable<v8::Handle<v8::Value>, const Core::String&, &HTMLElementBase::getAttribute>);
   cw.Set( "getElementById",
     ICM::M1::template Invocable<v8::Handle<v8::Value>, const Core::String&, &HTMLElementBase::getElementById>);
   cw.Set( "getElementsByTagName",
@@ -238,15 +238,18 @@ HTMLElementBase::populate(v8::juice::cw::ClassWrap<T>& cw) {
   {
     v8::HandleScope handle_scope;
     Core::ElementDocument* rocket_body = getRocket()->GetOwnerDocument();
-    
+std::cout << "rocket_body" << rocket_body << std::endl;
     if (rocket_body) {
-      ElementDocumentWrapper* rocket_body_wrapper = dynamic_cast<ElementDocumentWrapper*>(rocket_body);
+      assert(dynamic_cast<ElementDocumentWrapper*>(rocket_body));
+      
+      ElementDocumentWrapper* rocket_body_wrapper = static_cast<ElementDocumentWrapper*>(rocket_body);
+      
       //fixme:?
-      // assert(rocket_body_wrapper);
+      assert(rocket_body_wrapper);
       
       if ( rocket_body_wrapper ) {
         HTMLDocument* document = rocket_body_wrapper->getDOMHTMLDocument();
-        
+std::cout << "document" << document << std::endl;
         if (document) {
         
           v8::Handle<v8::Value> v8document = v8::juice::convert::CastToJS(document);
@@ -426,10 +429,13 @@ HTMLElementBase::populate(v8::juice::cw::ClassWrap<T>& cw) {
   }
 
 
-  Core::String HTMLElementBase::getAttribute(const Core::String& name) {
-    Core::String value;
-    getRocket()->GetAttribute(name, value);
-    return value;
+  v8::Handle<v8::Value>
+  HTMLElementBase::getAttribute(const Core::String& name) {
+    v8::HandleScope handle_scope;
+    if (getRocket()->HasAttribute(name)) {
+      return handle_scope.Close(v8::juice::convert::CastToJS(getRocket()->GetAttribute(name, Core::String())));
+    }
+    return handle_scope.Close(v8::Null());
   }
 
   v8::Handle<v8::Value>
@@ -460,6 +466,7 @@ HTMLElementBase::populate(v8::juice::cw::ClassWrap<T>& cw) {
   v8::Handle<v8::Value> HTMLElementBase::getElementById(const Core::String& id)
   {
     v8::HandleScope handle_scope;
+std::cout << "getRocket()->GetElementById(id): " << getRocket()->GetElementById(id) << std::endl;
     return handle_scope.Close(JS::juice::getV8HandleFromRocketWrapper(getRocket()->GetElementById(id), v8::Null()));
   }
 

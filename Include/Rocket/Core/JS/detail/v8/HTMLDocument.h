@@ -28,6 +28,7 @@ public:
 public:
   virtual v8::Handle<v8::Value> createComment(const Core::String& comment);
   virtual v8::Handle<v8::Value> createElement(const Core::String& tag);
+  virtual v8::Handle<v8::Value> createDocumentFragment();
   virtual v8::Handle<v8::Value> createTextNode(const Core::String& text);
   virtual v8::Handle<v8::Value>	getElementById(const Core::String& elementId);
   virtual v8::Handle<v8::Value>	getElementsByTagName(const Core::String& tagname);

@@ -2,7 +2,7 @@
 #define ROCKET_CORE_JS_DETAIL_V8_GLUE_HTMLELEMENTLIST_HPP
 
 
-#include <Rocket/Core/JS/detail/v8/HTMLElementBase.h>
+#include <Rocket/Core/JS/detail/v8/HTMLElementList.h>
 
 #include <v8/juice/ClassWrap.h>
 #include <v8/juice/convert.h>

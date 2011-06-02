@@ -16,7 +16,7 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
   HTMLElementTemplate()
     : element(NULL)
   {
-std::cout << __FILE__ ":" << __LINE__ << std::endl;
+// std::cout << __FILE__ ":" << __LINE__ << std::endl;
   }
     
   template<typename ElementT>
