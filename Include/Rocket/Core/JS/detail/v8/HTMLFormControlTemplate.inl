@@ -223,24 +223,24 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
   
   
   
-  template<typename ElementT>
-  void
-  HTMLFormControlTemplate<ElementT>::
-  innerHTML(const Core::String& v)
-  {
+  // template<typename ElementT>
+  // void
+  // HTMLFormControlTemplate<ElementT>::
+  // innerHTML(const Core::String& v)
+  // {
     //FIXME: ??
-    super::innerHTML(v);
-    value(v);
-  }
+    // super::innerHTML(v);
+    // value(v);
+  // }
   
-  template<typename ElementT>
-  Core::String
-  HTMLFormControlTemplate<ElementT>::
-  innerHTML()
-  {
+  // template<typename ElementT>
+  // Core::String
+  // HTMLFormControlTemplate<ElementT>::
+  // innerHTML()
+  // {
     //FIXME: ??
-    return value();
-  }
+    // return value();
+  // }
 
   
   

@@ -50,8 +50,8 @@ public:
 public:  
 //Overrides
   //FIXME: is this wise?
-  virtual void innerHTML(const Core::String& v);
-  virtual Core::String innerHTML();
+  // virtual void innerHTML(const Core::String& v);
+  // virtual Core::String innerHTML();
 public:
   typedef v8::juice::cw::ClassWrap<self_type> CW;
   

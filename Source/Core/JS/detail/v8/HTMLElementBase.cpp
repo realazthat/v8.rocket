@@ -4,6 +4,7 @@
 
 #include <Rocket/Core/JS/detail/v8/HTMLElementBase.h>
 #include <Rocket/Core/JS/detail/v8/HTMLElementList.h>
+#include <Rocket/Core/JS/detail/v8/CSS2Properties.h>
 #include <Rocket/Core/JS/detail/rocket/ElementDocumentWrapper.h>
 #include <Rocket/Core/JS/detail/rocket/EventListener.h>
 #include <Rocket/Core/JS/detail/rocket/Utility.h>
@@ -76,6 +77,11 @@ HTMLElementBase::populate(v8::juice::cw::ClassWrap<T>& cw) {
   cw.template BindGetter<v8::Handle<v8::Value>,
                 &HTMLElementBase::previousSibling>
                 ("previousSibling");
+
+
+  cw.template BindGetter<v8::Handle<v8::Value>,
+                &HTMLElementBase::style>
+                ("style");
 
 
 
@@ -289,11 +295,21 @@ std::cout << "document" << document << std::endl;
   HTMLElementBase::
   previousSibling()
   {
-// std::cout << __FILE__ ":" << __LINE__ << std::endl;
     v8::HandleScope handle_scope;
     
 
     return handle_scope.Close(JS::juice::getV8HandleFromRocketWrapper(getRocket()->GetPreviousSibling(), v8::Null()));
+  }
+
+  
+  v8::Handle<v8::Value>
+  HTMLElementBase::
+  style()
+  {
+    v8::HandleScope handle_scope;
+    
+    return handle_scope.Close(JS::juice::create<JS::juice::CSS2Properties>(getRocket()));
+    // return handle_scope.Close(JS::juice::getV8HandleFromRocketWrapper(getRocket()->GetPreviousSibling(), v8::Null()));
   }
 
 

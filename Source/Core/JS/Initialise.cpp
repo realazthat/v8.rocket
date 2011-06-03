@@ -7,6 +7,7 @@
 #include <Rocket/Core/JS/detail/rocket/ElementInstancer.h>
 #include <Rocket/Core/JS/detail/rocket/EventInstancer.h>
 #include <Rocket/Core/JS/detail/rocket/ElementDocumentWrapper.h>
+#include <Rocket/Core/JS/detail/rocket/ElementFormControlWrapperTemplate.h>
 
 #include <Rocket/Core/JS/detail/v8/HTMLDocument.h>
 #include <Rocket/Core/JS/detail/v8/HTMLElementList.h>
@@ -40,6 +41,7 @@ void Initialise() {
     Core::Factory::RegisterElementInstancer("#text",
       new JS::ElementInstancer<Core::ElementTextDefault, JS::juice::HTMLElementGeneric>)->RemoveReference();
     
+    //Wrap ElementDocuments; they have to be able to retrieve the true HTMLDocument object.
     Core::Factory::RegisterElementInstancer("body",
       new JS::ElementInstancer<JS::ElementDocumentWrapper, JS::juice::HTMLElementGeneric>)->RemoveReference();
     
@@ -66,19 +68,21 @@ void Initialise() {
     Core::Factory::RegisterElementInstancer("form",
       new JS::ElementInstancer<Controls::ElementForm, JS::juice::HTMLFormElement>)->RemoveReference();
     
-    // Core::Factory::RegisterElementInstancer("textarea",
-      // new JS::ElementInstancer<Controls::ElementFormControlTextArea, JS::juice::HTMLTextAreaElement>)->RemoveReference();
-    
-    Core::Factory::RegisterElementInstancer("input",
-      new JS::ElementInstancer<Controls::ElementFormControlInput, JS::juice::HTMLInputElement>)->RemoveReference();
-    
-    Core::Factory::RegisterElementInstancer("textarea",
-      new JS::ElementInstancer<Controls::ElementFormControlTextArea, JS::juice::HTMLElementGeneric>)->RemoveReference();
-    
-    // Core::Factory::RegisterElementInstancer("input",
-      // new JS::ElementInstancer<Controls::ElementFormControlInput, JS::juice::HTMLElementGeneric>)->RemoveReference();
-    
-  
+    {//Form Controls
+      //Wrap FormControls; they are missing some functionality, which we implement in overiden functions
+      typedef JS::ElementFormControlWrapperTemplate< Controls::ElementFormControlTextArea > WrappedElementFormControlTextArea;
+      typedef JS::ElementFormControlWrapperTemplate< Controls::ElementFormControlInput > WrappedElementFormControlInput;
+      typedef JS::ElementFormControlWrapperTemplate< Controls::ElementFormControlSelect > WrappedElementFormControlSelect;
+      
+      Core::Factory::RegisterElementInstancer("input",
+        new JS::ElementInstancer< WrappedElementFormControlInput, JS::juice::HTMLInputElement>)->RemoveReference();
+      
+      Core::Factory::RegisterElementInstancer("textarea",
+        new JS::ElementInstancer< WrappedElementFormControlTextArea, JS::juice::HTMLElementGeneric>)->RemoveReference();
+      
+      Core::Factory::RegisterElementInstancer("select",
+        new JS::ElementInstancer< WrappedElementFormControlSelect, JS::juice::HTMLElementGeneric>)->RemoveReference();
+    }
   }
   
   {

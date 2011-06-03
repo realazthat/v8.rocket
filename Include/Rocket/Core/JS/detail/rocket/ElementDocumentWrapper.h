@@ -3,8 +3,6 @@
 
 #include <Rocket/Core.h>
 
-#include <Rocket/Core/JS/detail/rocket/RocketWrapper.h>
-
 #include <Rocket/Core/JS/detail/v8/HTMLDocument.h>
 
 

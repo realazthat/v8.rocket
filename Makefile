@@ -40,6 +40,7 @@ V8ROCKET_OBJECTS = \
   $(V8ROCKET_OBJPATH)/ElementDocumentWrapper.o \
   $(V8ROCKET_OBJPATH)/HTMLDocument.o \
   $(V8ROCKET_OBJPATH)/Event.o \
+  $(V8ROCKET_OBJPATH)/CSS2Properties.o \
   $(V8ROCKET_OBJPATH)/HTMLElementList.o \
   $(V8ROCKET_OBJPATH)/HTMLElementBase.o \
   $(V8ROCKET_OBJPATH)/HTMLElementGeneric.o \
@@ -74,6 +75,9 @@ $(V8ROCKET_OBJPATH)/ElementDocumentWrapper.o: $(V8ROCKET_SRCPATH)/Core/JS/detail
 	$(CXX) -c -o"$@" $^ $(V8ROCKET_INTERNAL_CXXFLAGS)
 
 $(V8ROCKET_OBJPATH)/HTMLElementList.o: $(V8ROCKET_SRCPATH)/Core/JS/detail/v8/HTMLElementList.cpp
+	$(CXX) -c -o"$@" $^ $(V8ROCKET_INTERNAL_CXXFLAGS)
+
+$(V8ROCKET_OBJPATH)/CSS2Properties.o: $(V8ROCKET_SRCPATH)/Core/JS/detail/v8/CSS2Properties.cpp
 	$(CXX) -c -o"$@" $^ $(V8ROCKET_INTERNAL_CXXFLAGS)
 
 $(V8ROCKET_OBJPATH)/HTMLElementGeneric.o: $(V8ROCKET_SRCPATH)/Core/JS/detail/v8/HTMLElementGeneric.cpp

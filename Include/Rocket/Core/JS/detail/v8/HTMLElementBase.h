@@ -36,6 +36,7 @@ public:
   virtual v8::Handle<v8::Value> ownerDocument();
   virtual v8::Handle<v8::Value> parentNode();
   virtual v8::Handle<v8::Value> previousSibling();
+  virtual v8::Handle<v8::Value> style();
 public:
   //Getters/Setters
   virtual void id(const Core::String& rml);

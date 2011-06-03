@@ -97,11 +97,9 @@ And of course link with libv8rocket.a (or w/e you name it if in MSVC), and the o
 
 Initalize Rocket as usual. Then call Rocket::Core::JS::Initialise() immediately afterward:
 <pre>
-  
   Rocket::Core::Initialise();
   Rocket::Controls::Initialise();
   Rocket::Core::JS::Initialise();
-  
 </pre>
 
 Create your Core::Context and load your document as usual.
@@ -199,7 +197,7 @@ window.navigator =
 
 window.location =
   {
-    href : "http://wabcradio.com/article.asp?id=531472"
+    href : "http://google.com"
   };
 
 
