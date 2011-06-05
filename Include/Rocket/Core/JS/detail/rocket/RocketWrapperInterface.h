@@ -24,7 +24,7 @@ struct RocketWrapperInterface{
   /**
    * Abstract, implemented in RocketWrapper.
    */
-  virtual v8::Handle<v8::Object> getJSInterfaceHandle() = 0;
+  virtual v8::Handle<v8::Object> getV8InterfaceHandle() = 0;
   
   
   /**
@@ -47,7 +47,7 @@ struct RocketWrapperInterface{
     assert(jsBase);
     
     v8::HandleScope handle_scope;
-    v8::Handle<v8::Object> h = jsBase->getJSInterfaceHandle();
+    v8::Handle<v8::Object> h = jsBase->getV8InterfaceHandle();
     
     return handle_scope.Close(h);
   }

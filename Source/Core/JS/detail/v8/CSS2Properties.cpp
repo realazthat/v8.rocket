@@ -131,7 +131,11 @@ void
 CSS2Properties::
 setProperty(const Core::String& n, const Core::String& v)
 {
-  getRocket()->SetProperty(n, v);
+  if (v.Empty()) {
+    getRocket()->RemoveProperty(n);
+  } else {
+    getRocket()->SetProperty(n, v);
+  }
 }
 
 
