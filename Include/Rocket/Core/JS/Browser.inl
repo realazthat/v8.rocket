@@ -68,7 +68,7 @@ compile(const v8::Handle<v8::String> script_source,
   // Compile script in try/catch context.
   v8::TryCatch try_catch;
   
-  v8::Handle<v8::Script> script = v8::Script::Compile(script_source);
+  v8::Handle<v8::Script> script = v8::Script::Compile(script_source, script_name);
   
   
   if (script.IsEmpty()) {

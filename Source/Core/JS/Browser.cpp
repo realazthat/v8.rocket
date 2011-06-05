@@ -107,6 +107,9 @@ std::cout << "docWrapper: " << docWrapper << std::endl;
       }
       
     }
+    
+    //Note: Make sure to do this after window.document is set.
+    docWrapper->attachToBrowser(this);
   }
 }
 

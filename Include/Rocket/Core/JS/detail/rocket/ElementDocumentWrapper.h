@@ -8,6 +8,8 @@
 
 namespace Rocket{ namespace Core { namespace JS{
 
+struct Browser;
+
 /**
  * This is a special wrapper for Core::ElementDocument,
  * to give access to the DOM HTMLDocument, which is
@@ -33,10 +35,20 @@ public:
    * Set the HTMLDocument object
    */
   virtual void setDOMHTMLDocument(JS::juice::HTMLDocument* doc);
+
+  virtual void attachToBrowser(JS::Browser* b);
+public:
+//Overrides
+  virtual void LoadScript(Core::Stream *stream, const Core::String &source_name);
 public:
 private:
+  virtual void LoadScript(const Core::String& script_source, const Core::String &source_name);
+  
   //FIXME: check lifetime of this??
   JS::juice::HTMLDocument* document;
+  JS::Browser* browser;
+  typedef std::vector< std::pair<Core::String, Core::String> > scripts_buffer_t;
+  scripts_buffer_t scripts_buffer;
 };
 
 } } }//namespaces Rocket::Core::JS
