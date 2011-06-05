@@ -16,6 +16,7 @@ Advantages of v8rocket:
 - Allows a fully dynamic layout, that can grow/shrink etc. as needed.
 - It can make it easier to implement some sort of HIG, as opposed to adhoc GUI which appears in commonly in 3D rendered applications.
 - One can possibly expose an API for their application, to enable scripting from v8, which can be useful for RAD.
+- Allows delegation of work to developers skilled in web programming.
 
 My goal and wish is to be able to leverage existing Javascript libraries that have revolutionized web development over the years, such as jQuery (http://jquery.com/).
 
