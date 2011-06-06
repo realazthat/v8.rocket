@@ -46,6 +46,7 @@ V8ROCKET_OBJECTS = \
   $(V8ROCKET_OBJPATH)/HTMLElementGeneric.o \
   $(V8ROCKET_OBJPATH)/HTMLFormElement.o \
   $(V8ROCKET_OBJPATH)/HTMLInputElement.o \
+  $(V8ROCKET_OBJPATH)/HTMLTextAreaElement.o \
 
 ###############################################################
 
@@ -87,6 +88,9 @@ $(V8ROCKET_OBJPATH)/HTMLElementBase.o: $(V8ROCKET_SRCPATH)/Core/JS/detail/v8/HTM
 	$(CXX) -c -o"$@" $^ $(V8ROCKET_INTERNAL_CXXFLAGS)
 
 $(V8ROCKET_OBJPATH)/HTMLInputElement.o: $(V8ROCKET_SRCPATH)/Core/JS/detail/v8/HTMLInputElement.cpp
+	$(CXX) -c -o"$@" $^ $(V8ROCKET_INTERNAL_CXXFLAGS)
+
+$(V8ROCKET_OBJPATH)/HTMLTextAreaElement.o: $(V8ROCKET_SRCPATH)/Core/JS/detail/v8/HTMLTextAreaElement.cpp
 	$(CXX) -c -o"$@" $^ $(V8ROCKET_INTERNAL_CXXFLAGS)
 
 $(V8ROCKET_OBJPATH)/HTMLDocument.o: $(V8ROCKET_SRCPATH)/Core/JS/detail/v8/HTMLDocument.cpp

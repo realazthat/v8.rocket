@@ -17,6 +17,7 @@
 #include <Rocket/Core/JS/detail/v8/HTMLElementGeneric.h>
 #include <Rocket/Core/JS/detail/v8/HTMLFormElement.h>
 #include <Rocket/Core/JS/detail/v8/HTMLInputElement.h>
+#include <Rocket/Core/JS/detail/v8/HTMLTextAreaElement.h>
 
 #include <Core/ElementTextDefault.h>
 #include <Core/ElementHandle.h>
@@ -78,7 +79,7 @@ void Initialise() {
         new JS::ElementInstancer< WrappedElementFormControlInput, JS::juice::HTMLInputElement>)->RemoveReference();
       
       Core::Factory::RegisterElementInstancer("textarea",
-        new JS::ElementInstancer< WrappedElementFormControlTextArea, JS::juice::HTMLElementGeneric>)->RemoveReference();
+        new JS::ElementInstancer< WrappedElementFormControlTextArea, JS::juice::HTMLTextAreaElement>)->RemoveReference();
       
       Core::Factory::RegisterElementInstancer("select",
         new JS::ElementInstancer< WrappedElementFormControlSelect, JS::juice::HTMLElementGeneric>)->RemoveReference();

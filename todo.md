@@ -17,10 +17,10 @@ Note that input elements etc. are not specialized above HTMLElement, so setting 
 - Test suites?
 - Example
 - Example html/javascript
-- Script tag
 - DocumentFragment
 - Supply missing functionality that jQuery needs to function
 - setTimeout()
+- Fix line number's in ReportException()
 
 ## Improvements required (or preferred) in libRocket
 
