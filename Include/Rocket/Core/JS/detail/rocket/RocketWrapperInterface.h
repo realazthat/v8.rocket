@@ -18,15 +18,15 @@ namespace Rocket{ namespace Core{ namespace JS{
  *
  */
 struct RocketWrapperInterface{
-  
+
   virtual ~RocketWrapperInterface(){}
-  
+
   /**
    * Abstract, implemented in RocketWrapper.
    */
   virtual v8::Handle<v8::Object> getV8InterfaceHandle() = 0;
-  
-  
+
+
   /**
    * Utility function to convert any Core::ScriptInterface pointer, to a v8:Handle.
    * The pointer returned from Core::ScriptInterface::GetScriptObject()
@@ -38,17 +38,17 @@ struct RocketWrapperInterface{
   v8::Handle<v8::Object>
   CastToJS(const Core::ScriptInterface* e) {
     assert(e);
-    
+
     Core::ScriptObject object = e->GetScriptObject();
-    
+
     assert(object);
     RocketWrapperInterface* jsBase = reinterpret_cast<RocketWrapperInterface*>(object);
-    
+
     assert(jsBase);
-    
+
     v8::HandleScope handle_scope;
     v8::Handle<v8::Object> h = jsBase->getV8InterfaceHandle();
-    
+
     return handle_scope.Close(h);
   }
 };

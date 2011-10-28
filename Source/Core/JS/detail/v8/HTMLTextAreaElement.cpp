@@ -12,23 +12,23 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
 HTMLTextAreaElement::CW&
 HTMLTextAreaElement::getCW() {
   CW & cw( CW::Instance() );
-  
+
   if( cw.IsSealed() )
   {
       return cw;
   }
-  
+
   //HTMLFormControlTemplate
   cw.Inherit(super::getCW());
-  
+
   // cw.BindGetterSetter<Core::String,
              // &super::name,
              // void,const Core::String&,&super::name>
              // ( "name");
 
-  
+
   cw.Seal(); // ends the binding process
-  
+
   return cw;
 }
 
@@ -44,7 +44,7 @@ HTMLTextAreaElement::HTMLTextAreaElement(RElementT* element_)
 
 HTMLTextAreaElement& HTMLTextAreaElement::operator=(const HTMLTextAreaElement& other){
   super::operator=(other);
-  
+
   return *this;
 }
 

@@ -33,7 +33,7 @@ struct EventInstancer : public Core::EventInstancer{
 	{
     RocketWrapper<REventT, V8WrapperT>* event =
       new RocketWrapper<REventT, V8WrapperT>(target, name, parameters, interruptible);
-    
+
     return event;
   }
 };

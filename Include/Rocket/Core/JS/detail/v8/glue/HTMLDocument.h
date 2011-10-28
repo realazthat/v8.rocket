@@ -17,15 +17,15 @@ namespace cw{
        tmp::TypeList< convert::CtorForwarder0<Rocket::Core::JS::juice::HTMLDocument> >
     >
   {};
-  
+
   template <> struct DebugLevel<Rocket::Core::JS::juice::HTMLDocument>
     : Opt_Int<3> {};
-  
+
   template <>
   struct ToNative_SearchPrototypesForNative<Rocket::Core::JS::juice::HTMLDocument>
       : Opt_Bool<true>
   {};
-  
+
 
 }//namespace cw
 } }//namespaces v8::juice

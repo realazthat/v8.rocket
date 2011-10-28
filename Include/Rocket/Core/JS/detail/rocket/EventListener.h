@@ -16,18 +16,18 @@ struct EventListener : public Rocket::Core::EventListener{
       m_element(NULL)
   {
 // std::cout << __FILE__ ": " << __LINE__ << std::endl;
-  
+
   }
-  
+
   ~EventListener(){
 // std::cout << __FILE__ ": " << __LINE__ << std::endl;
     assert(!fun.IsEmpty());
-    
+
     fun.Dispose();
     fun.Clear();
-    
+
     assert(!v8context.IsEmpty());
-    
+
     v8context.Dispose();
     v8context.Clear();
   }
@@ -36,47 +36,47 @@ struct EventListener : public Rocket::Core::EventListener{
   {
 // std::cout << __FILE__ ": " << __LINE__ << std::endl;
     assert(m_element);
-    
-    
+
+
     v8::Locker locker;
-    
+
     v8::HandleScope handle_scope;
-    
+
     v8::Context::Scope context_scope(getV8Context());
-    
+
 // std::cout << __FILE__ ": " << __LINE__ << std::endl;
     v8::Handle<v8::Value> v8Event = JS::juice::getV8HandleFromRocketWrapper(&event, v8::Handle<v8::Value>());
 // std::cout << __FILE__ ": " << __LINE__ << std::endl;
     assert(!v8Event.IsEmpty());
-    
-    
+
+
     v8::Handle<v8::Value> argv[] = {
       v8Event
     };
 // std::cout << __FILE__ ": " << __LINE__ << std::endl;
     v8::Handle<v8::Object> v8element = JS::juice::getV8HandleFromRocketWrapper(m_element);
-    
+
     assert(!v8element.IsEmpty());
-    
+
 // std::cout << __FILE__ ": " << __LINE__ << std::endl;
     fun->Call( v8element,
       sizeof(argv)/sizeof(v8::Handle<v8::Value>),
       argv );
 // std::cout << __FILE__ ": " << __LINE__ << std::endl;
   }
-  
-  
+
+
   void OnAttach(Core::Element* element)
   {
 // std::cout << __FILE__ ": " << __LINE__ << std::endl;
     m_element = element;
   }
-  
+
   void OnDetach(Core::Element* element)
   {
 // std::cout << __FILE__ ": " << __LINE__ << std::endl;
     assert(m_element == element);
-    
+
     delete this;
   }
 

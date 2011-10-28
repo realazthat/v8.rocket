@@ -17,15 +17,15 @@ struct HTMLFormControlTemplate : public HTMLElementTemplate<ElementT>{
   typedef HTMLFormControlTemplate self_type;
 
 public:
-  
-  
+
+
 public:
   //HTMLElementTemplate should be inherited. This *should* be protected,
   //but must be exposed for ClassWrap :(
   explicit HTMLFormControlTemplate();
-    
+
   explicit HTMLFormControlTemplate(ElementT* element_);
-  
+
   self_type& operator=(const self_type& other);
 public:
 //RO properties
@@ -35,26 +35,26 @@ public:
 //Getters/Setters
   virtual Core::String name();
   virtual void name(const Core::String& n);
-  
+
   virtual Core::String defaultValue();
   virtual void defaultValue(const Core::String& v);
-  
+
   virtual Core::String value();
   virtual void value(const Core::String& v);
-  
+
   virtual bool disabled();
   virtual void disabled(bool v);
-  
+
   virtual bool readOnly();
   virtual void readOnly(bool v);
-public:  
+public:
 //Overrides
   //FIXME: is this wise?
   // virtual void innerHTML(const Core::String& v);
   // virtual Core::String innerHTML();
 public:
   typedef v8::juice::cw::ClassWrap<self_type> CW;
-  
+
   static
   CW&
   getCW();

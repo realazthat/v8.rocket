@@ -43,7 +43,7 @@ public:
 public:
 private:
   virtual void LoadScript(const Core::String& script_source, const Core::String &source_name);
-  
+
   //FIXME: check lifetime of this??
   JS::juice::HTMLDocument* document;
   JS::Browser* browser;

@@ -18,7 +18,7 @@ Browser::
 Browser::ReportException(const v8::TryCatch& try_catch, OutT& out) {
 
   v8::HandleScope handle_scope;
-  
+
   v8::String::Utf8Value exception(try_catch.Exception());
   const char* exception_string = JS::juice::ToCString(exception);
   v8::Handle<v8::Message> message = try_catch.Message();
@@ -61,20 +61,20 @@ compile(const v8::Handle<v8::String> script_source,
   HandleTryCatch handleTryCatch)
 {
   assert(!script_source.IsEmpty());
-  
+
   v8::Context::Scope context_scope(v8Context());
   v8::HandleScope handle_scope;
-  
+
   // Compile script in try/catch context.
   v8::TryCatch try_catch;
-  
+
   v8::Handle<v8::Script> script = v8::Script::Compile(script_source, script_name);
-  
-  
+
+
   if (script.IsEmpty()) {
     handleTryCatch(try_catch);
   }
-  
+
   return handle_scope.Close(script);
 }
 
@@ -84,17 +84,17 @@ Browser::
 run(v8::Handle<v8::Script> script, HandleTryCatch handleTryCatch)
 {
   assert(!script.IsEmpty());
-  
+
   v8::Context::Scope context_scope(v8Context());
   v8::HandleScope handle_scope;
 
   v8::TryCatch try_catch;
   v8::Handle<v8::Value> result = script->Run();
-  
+
   if (try_catch.HasCaught()) {
     handleTryCatch(try_catch);
   }
-  
+
   return handle_scope.Close(result);
 }
 

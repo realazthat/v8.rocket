@@ -18,16 +18,16 @@ struct HTMLElementTemplate : public HTMLElementBase{
   typedef HTMLElementTemplate self_type;
 
 public:
-  
+
   ~HTMLElementTemplate();
   virtual ElementT* getRocket();
-  
+
 protected:
   //HTMLElementTemplate should be inherited.
   explicit HTMLElementTemplate();
-    
+
   explicit HTMLElementTemplate(ElementT* element_);
-  
+
   self_type& operator=(const self_type& other);
 private:
   ElementT* element;

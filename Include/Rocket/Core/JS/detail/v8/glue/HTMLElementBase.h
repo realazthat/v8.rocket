@@ -29,7 +29,7 @@ namespace cw{
   struct ToNative_SearchPrototypesForNative<Rocket::Core::JS::juice::HTMLElementBase>
       : Opt_Bool<true>
   {};
-  
+
 
 }//namespace cw
 } }//namespaces v8::juice

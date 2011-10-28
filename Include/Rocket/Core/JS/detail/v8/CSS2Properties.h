@@ -14,7 +14,7 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
 struct CSS2Properties{
   typedef CSS2Properties self_type;
   typedef Core::Element RElement;
-  
+
   CSS2Properties();
   CSS2Properties(RElement* e);
   self_type& operator=(const self_type& other);
@@ -22,19 +22,19 @@ struct CSS2Properties{
 public:
   virtual Core::String azimuth();
   virtual void azimuth(const Core::String& v);
-  
+
   virtual Core::String background();
   virtual void background(const Core::String& v);
-  
+
   virtual Core::String backgroundAttachment();
   virtual void backgroundAttachment(const Core::String& v);
-  
+
   virtual Core::String backgroundColor();
   virtual void backgroundColor(const Core::String& v);
-  
+
   virtual Core::String backgroundImage();
   virtual void backgroundImage(const Core::String& v);
-  
+
   // virtual Core::String backgroundPosition() const;
   // virtual Core::String backgroundRepeat() const;
   // virtual Core::String border() const;
@@ -156,14 +156,14 @@ public:
   // virtual Core::String zIndex;
 public:
   typedef v8::juice::cw::ClassWrap<self_type> CW;
-  
+
   static
   CW&
   getCW();
 protected:
   RElement* getRocket();
   const RElement* getRocket() const;
-  
+
   virtual Core::String getProperty(const Core::String& n);
   virtual void setProperty(const Core::String& n, const Core::String& v);
 private:

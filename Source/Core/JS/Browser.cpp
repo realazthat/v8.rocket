@@ -37,10 +37,10 @@ Browser::Browser(
   : m_rocketContext(context), m_rocketBody(body)
 {
   assert( dynamic_cast<JS::ElementDocumentWrapper*>(&(*m_rocketBody)) );
-  
+
   JS::ElementDocumentWrapper* docWrapper
     = static_cast<JS::ElementDocumentWrapper*>(&(*m_rocketBody));
-  
+
   assert(docWrapper);
 
 std::cout << "docWrapper: " << docWrapper << std::endl;
@@ -49,43 +49,43 @@ std::cout << "docWrapper: " << docWrapper << std::endl;
   {
     v8::Locker locker;
     v8::HandleScope handle_scope;
-    
+
     v8::Handle<v8::ObjectTemplate> globt = v8::ObjectTemplate::New();
-    
+
     //Global template
     {
       globt->Set( v8::String::New("log"), v8::FunctionTemplate::New(LogCallback));
     }
-    
+
     m_v8Context = v8::Context::New(NULL, globt);
-    
+
 
     v8::Context::Scope context_scope(v8Context());
 
     //v8 context
     {
       v8::Handle<v8::Object> global = v8Context()->Global();
-      
+
       //inform v8 of these classes
       //FIXME: is this necessary? This is probably just exposing the ctors,
       // which we don't want *anyway*
       {
         ///HTMLElement
         JS::juice::HTMLElementBase::getCW().AddClassTo(global);
-        
+
         ///HTMLElement that represents Core::Element
         JS::juice::HTMLElementGeneric::getCW().AddClassTo(global);
-        
+
         ///List of HTMLElement's
         JS::juice::HTMLElementList::getCW().AddClassTo(global);
-        
+
         ///Event
         JS::juice::Event::getCW().AddClassTo(global);
 
         ///HTMLDocument
         JS::juice::HTMLDocument::getCW().AddClassTo(global);
       }
-      
+
       ///HTMLDocument object (window.document)
       {
         ///Create a HTMLDocument object
@@ -93,21 +93,21 @@ std::cout << "docWrapper: " << docWrapper << std::endl;
           JS::juice::create<JS::juice::HTMLDocument>(&*m_rocketBody) );
 
         // assert(!v8Document.IsEmpty());
-        
+
         JS::juice::HTMLDocument* jsDocument
           = v8::juice::convert::CastFromJS<JS::juice::HTMLDocument>(m_v8HTMLDocument);
-        
+
         assert(jsDocument);
-        
+
         //FIXME: check that m_v8HTMLDocument will always last longer than
         docWrapper->setDOMHTMLDocument(jsDocument);
-        
+
         global->Set( v8::String::New("document"), m_v8HTMLDocument);
-        
+
       }
-      
+
     }
-    
+
     //Note: Make sure to do this after window.document is set.
     docWrapper->attachToBrowser(this);
   }

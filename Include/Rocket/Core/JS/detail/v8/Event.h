@@ -19,7 +19,7 @@ public:
   Event();
   Event(RocketT* element_);
   virtual ~Event();
-  
+
   self_type& operator=(const self_type& other);
 public:
 //Enumerations
@@ -40,7 +40,7 @@ public:
   virtual void stopPropagation();
 public:
   typedef v8::juice::cw::ClassWrap<self_type> CW;
-  
+
   static CW& getCW();
 protected:
   virtual RocketT* getRocket();

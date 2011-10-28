@@ -20,13 +20,13 @@ namespace cw{
       >
   {
   };
-  
+
   template <> struct DebugLevel<Rocket::Core::JS::juice::HTMLElementList> : Opt_Int<3> {};
   template <>
   struct ToNative_SearchPrototypesForNative<Rocket::Core::JS::juice::HTMLElementList>
       : Opt_Bool<true>
   {};
-  
+
 
 }//namespace cw
 } }//namespaces v8::juice

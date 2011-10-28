@@ -17,7 +17,7 @@ namespace {
 /**
  * Creates a v8::Handle in a v8 context of the specified type. The
  * object will be default constructed.
- * 
+ *
  * V8WrapperT must have v8::juice::ClassWrap glue.
  */
 template<typename V8WrapperT>
@@ -41,7 +41,7 @@ create() {
  *
  * Summary: Use this to create v8 wrappers, that take a native rocket
  * value in the ctor.
- * 
+ *
  * V8WrapperT must have v8::juice::ClassWrap glue.
  */
 template<typename V8WrapperT, typename RocketT>
@@ -51,7 +51,7 @@ create(const RocketT& rocketNative) {
   v8::Handle<v8::Object> v8Instance = create<V8WrapperT>();
   {
     V8WrapperT* instance = v8::juice::convert::CastFromJS<V8WrapperT>(v8Instance);
-    
+
     assert(instance);
 
     *instance = V8WrapperT(rocketNative);

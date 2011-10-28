@@ -35,9 +35,9 @@ namespace detail{
   struct handle_errors_t{
     void operator()(const v8::TryCatch& try_catch){
       std::ostream& out(std::cout);
-      
+
       v8::HandleScope handle_scope;
-      
+
       v8::String::Utf8Value exception(try_catch.Exception());
       const char* exception_string = JS::juice::ToCString(exception);
       v8::Handle<v8::Message> message = try_catch.Message();
@@ -80,26 +80,26 @@ ElementDocumentWrapper::
 attachToBrowser(JS::Browser* b)
 {
   browser = b;
-  
+
   for ( scripts_buffer_t::const_iterator w = scripts_buffer.begin(), wend = scripts_buffer.end();
     w != wend;
     ++w)
   {
     LoadScript(w->first, w->second);
   }
-  
+
   scripts_buffer.clear();
 }
 
 void
 ElementDocumentWrapper::
 LoadScript(Core::Stream* stream, const Core::String& source_name) {
-  
+
   if ( browser ) {
     assert(scripts_buffer.empty());
     Rocket::Core::String buffer;
     stream->Read(buffer, stream->Length());
-    
+
     LoadScript(buffer, source_name);
   } else {
     scripts_buffer.push_back(std::make_pair(Core::String(),source_name));
@@ -112,18 +112,18 @@ ElementDocumentWrapper::
 LoadScript(const Core::String& script_source, const Core::String& source_name) {
   v8::Locker locker;
   v8::HandleScope handle_scope;
-  
+
   assert(browser);
-  
+
   v8::Context::Scope context_scope(browser->v8Context());
-  
+
   detail::handle_errors_t handle_errors;
-  
+
 
   v8::Handle<v8::Script> script = browser->compile(v8::String::New(script_source.CString()),
     v8::String::New(source_name.CString()),
     handle_errors);
-  
+
   browser->run(script, handle_errors);
 }
 

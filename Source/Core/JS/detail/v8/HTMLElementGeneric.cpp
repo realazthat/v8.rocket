@@ -14,16 +14,16 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
 HTMLElementGeneric::CW&
 HTMLElementGeneric::getCW() {
   CW & cw( CW::Instance() );
-  
+
   if( cw.IsSealed() )
   {
       return cw;
   }
-  
+
   cw.Inherit(super::getCW());
-  
+
   cw.Seal(); // ends the binding process
-  
+
   return cw;
 }
 
@@ -39,7 +39,7 @@ HTMLElementGeneric::HTMLElementGeneric(HTMLElementGeneric::RElementT* element_)
 
 HTMLElementGeneric& HTMLElementGeneric::operator=(const HTMLElementGeneric& other){
   super::operator=(other);
-  
+
   return *this;
 }
 

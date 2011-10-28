@@ -11,7 +11,7 @@ namespace Rocket{ namespace Core{ namespace JS{
 template<typename RefT>
 struct RocketScope{
 
-  
+
   RocketScope(RefT* ref)
     : ref(ref)
   {
@@ -25,70 +25,70 @@ struct RocketScope{
   {
     aquire();
   }
-  
+
   explicit RocketScope()
     : ref(NULL)
   {}
-  
+
   RocketScope& operator=(const RocketScope& other) {
     if (this == &other)
       return *this;
-    
+
     ///Make certain we don't go down to zero refs,
     /// in case we are assigning to one's self
     RocketScope tmp(other);
-    
+
     release();
-    
+
     ref = other.ref;
-    
+
     aquire();
-    
+
     return *this;
   }
-  
+
   ~RocketScope(){
     release();
   }
-  
+
   RefT* get(){
     return ref;
   }
-  
+
   const RefT* get() const{
     return ref;
   }
-  
+
   RefT& operator*(){
     assert(ref);
     return *ref;
   }
-  
+
   const RefT& operator*() const{
     assert(ref);
     return *ref;
   }
-  
+
   RefT* operator->(){
     assert(ref);
     return ref;
   }
-  
+
   const RefT* operator->() const{
     assert(ref);
     return ref;
   }
-  
-  
+
+
   template<typename ParentT>
   operator RocketScope<ParentT>() const{
     return RocketScope<ParentT>(ref);
   }
-  
+
   operator bool(){
     return ref != NULL;
   }
-  
+
   template<typename U>
   friend struct RocketScope;
 protected:
@@ -97,7 +97,7 @@ protected:
       ref->RemoveReference();
     ref = NULL;
   }
-  
+
   void aquire(){
     if (ref)
       ref->AddReference();

@@ -19,13 +19,13 @@ struct HTMLInputElement : public HTMLFormControlTemplate<Controls::ElementFormCo
   typedef HTMLFormControlTemplate<RElementT> super;
 public:
   explicit HTMLInputElement();
-    
+
   explicit HTMLInputElement(RElementT* element_);
-  
+
   self_type& operator=(const self_type& other);
 public:
   typedef v8::juice::cw::ClassWrap<self_type> CW;
-  
+
   static
   CW&
   getCW();

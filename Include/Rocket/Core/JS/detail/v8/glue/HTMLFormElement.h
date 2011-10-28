@@ -22,15 +22,15 @@ namespace cw{
        tmp::TypeList< convert::CtorForwarder0<Rocket::Core::JS::juice::HTMLFormElement> >
     >
   {};
-  
+
   template <> struct DebugLevel<Rocket::Core::JS::juice::HTMLFormElement>
     : Opt_Int<3> {};
-  
+
   template <>
   struct ToNative_SearchPrototypesForNative<Rocket::Core::JS::juice::HTMLFormElement>
       : Opt_Bool<true>
   {};
-  
+
 
 }//namespace cw
 } }//namespaces v8::juice
