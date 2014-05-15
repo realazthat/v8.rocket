@@ -24,9 +24,9 @@ struct HTMLElementBase{
   virtual ~HTMLElementBase(){}
 public:
   //RO properties
-  
+
   virtual Core::String tagName();
-  
+
   virtual v8::Handle<v8::Value> childNodes();
   virtual v8::Handle<v8::Value> firstChild();
   virtual v8::Handle<v8::Value> lastChild();
@@ -41,22 +41,22 @@ public:
   //Getters/Setters
   virtual void id(const Core::String& rml);
   virtual const Core::String& id();
-  
+
   virtual void innerHTML(const Core::String& rml);
   virtual Core::String innerHTML();
-  
+
   virtual v8::Handle<v8::Value> nodeValue();
   virtual void nodeValue(const Core::String& value);
-  
-  
+
+
   virtual Core::String className();
   virtual void className(const Core::String& value);
 
-  
+
 public:
   virtual void addEventListener(const Core::String& type, v8::Handle<v8::Value> listener, bool useCapture);
-  
-  
+
+
   virtual void appendChild(self_type* nodePtr);
   virtual void blur();
   virtual void click();
@@ -68,11 +68,11 @@ public:
   // getElementsByClassName(classes)
   virtual v8::Handle<v8::Value> getElementsByTagName(const Core::String& tagname);
   virtual v8::Handle<v8::Value> getElementById(const Core::String& id);
-  
+
   virtual bool hasAttribute(const Core::String& attributename);
   // hasAtrributes()
   virtual bool hasChildNodes();
-  
+
   virtual void insertBefore(self_type* newElementPtr, self_type* targetElementPtr);
   virtual void insertAfter(self_type* newElementPtr, self_type* targetElementPtr);
   virtual v8::Handle<v8::Value> item(int index);
@@ -84,10 +84,10 @@ public:
   virtual void scrollIntoView();
   virtual void setAttribute(const Core::String& name, const Core::String& value);
   // supports(feature, [version])
-  
-  
+
+
   typedef v8::juice::cw::ClassWrap<HTMLElementBase> CW;
-  
+
   static
   CW&
   getCW();

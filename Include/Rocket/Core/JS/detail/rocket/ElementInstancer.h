@@ -31,7 +31,7 @@ struct ElementInstancer : public Core::ElementInstancer{
     const Rocket::Core::XMLAttributes& attributes)
 	{
     RocketWrapper<RElementT, V8WrapperT>* element = new RocketWrapper<RElementT, V8WrapperT>(tag);
-        
+
     return element;
   }
 };

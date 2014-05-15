@@ -14,11 +14,11 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
 
 struct HTMLElementList{
   explicit HTMLElementList();
-  
+
   explicit HTMLElementList(const Core::ElementList& rawElements);
-  
+
   virtual ~HTMLElementList();
-  
+
   HTMLElementList& operator=(const HTMLElementList& other);
 public:
   ///JS getters
@@ -27,7 +27,7 @@ public:
   v8::Handle<v8::Value> item(Core::ElementList::size_type index);
 public:
   typedef v8::juice::cw::ClassWrap<HTMLElementList> CW;
-  
+
   static CW& getCW();
 private:
 

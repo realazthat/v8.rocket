@@ -20,15 +20,15 @@ namespace cw{
       >
   {
   };
-  
+
   template <typename ElementT>
   struct DebugLevel< Rocket::Core::JS::juice::HTMLFormControlTemplate<ElementT> > : Opt_Int<3> {};
-  
+
   template <typename ElementT>
   struct ToNative_SearchPrototypesForNative< Rocket::Core::JS::juice::HTMLFormControlTemplate<ElementT> >
       : Opt_Bool<true>
   {};
-  
+
 
 
 }//namespace cw

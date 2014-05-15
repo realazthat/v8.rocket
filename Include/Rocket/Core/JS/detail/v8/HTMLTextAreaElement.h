@@ -19,13 +19,13 @@ struct HTMLTextAreaElement : public HTMLFormControlTemplate<Controls::ElementFor
   typedef HTMLFormControlTemplate<RElementT> super;
 public:
   explicit HTMLTextAreaElement();
-    
+
   explicit HTMLTextAreaElement(RElementT* element_);
-  
+
   self_type& operator=(const self_type& other);
 public:
   typedef v8::juice::cw::ClassWrap<self_type> CW;
-  
+
   static
   CW&
   getCW();

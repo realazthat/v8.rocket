@@ -15,70 +15,70 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
 CSS2Properties::CW&
 CSS2Properties::getCW() {
   CW & cw( CW::Instance() );
-  
+
   if( cw.IsSealed() )
   {
       return cw;
   }
-  typedef v8::juice::convert::MemFuncInvocationCallbackCreator<self_type> ICM;  
-  
-  
+  typedef v8::juice::convert::MemFuncInvocationCallbackCreator<self_type> ICM;
+
+
   // cw.BindGetterSetter<Core::String,
                    // &self_type::azimuth,
                    // void,const Core::String&,&self_type::azimuth>
                    // ( "azimuth");
-  
+
   // cw.BindGetterSetter<Core::String,
                    // &self_type::background,
                    // void,const Core::String&,&self_type::background>
                    // ( "background");
-  
+
   // cw.BindGetterSetter<Core::String,
                    // &self_type::backgroundAttachment,
                    // void,const Core::String&,&self_type::backgroundAttachment>
                    // ( "backgroundAttachment");
-  
+
   // cw.BindGetterSetter<Core::String,
                    // &self_type::backgroundColor,
                    // void,const Core::String&,&self_type::backgroundColor>
                    // ( "backgroundColor");
-  
+
   // cw.BindGetterSetter<Core::String,
                    // &self_type::backgroundImage,
                    // void,const Core::String&,&self_type::backgroundImage>
                    // ( "backgroundImage");
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
   cw.BindGetterSetter<Core::String,
                    &self_type::display,
                    void,const Core::String&,&self_type::display>
                    ( "display");
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
   cw.BindGetterSetter<Core::String,
                    &self_type::visibility,
                    void,const Core::String&,&self_type::visibility>
                    ( "visibility");
-  
+
   cw.Seal(); // ends the binding process
-  
+
   return cw;
 }
 
@@ -102,7 +102,7 @@ CSS2Properties::~CSS2Properties()
 CSS2Properties& CSS2Properties::operator=(const self_type& other)
 {
   rocket = other.rocket;
-  
+
   return *this;
 }
 
@@ -145,7 +145,7 @@ CSS2Properties::
 getProperty(const Core::String& v)
 {
   const Core::Property* p = getRocket()->GetLocalProperty(v);
-  
+
   if (p)
     return p->ToString();
   return Core::String();

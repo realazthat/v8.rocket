@@ -14,16 +14,16 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
 HTMLFormElement::CW&
 HTMLFormElement::getCW() {
   typedef typename v8::juice::convert::MemFuncInvocationCallbackCreator<self_type> ICM;
-  
+
   CW & cw( CW::Instance() );
-  
+
   if( cw.IsSealed() )
   {
       return cw;
   }
-  
+
   cw.Inherit(super::getCW());
-    
+
   cw.BindGetter<int,
             &self_type::length>
             ("length");
@@ -47,9 +47,9 @@ HTMLFormElement::getCW() {
   cw.Set( "submit", ICM::M0::Invocable<void,&self_type::submit>);
   cw.Set( "reset", ICM::M0::Invocable<void,&self_type::reset>);
 
-  
+
   cw.Seal(); // ends the binding process
-  
+
   return cw;
 }
 
@@ -65,7 +65,7 @@ HTMLFormElement::HTMLFormElement(RElementT* element_)
 
 HTMLFormElement& HTMLFormElement::operator=(const self_type& other){
   super::operator=(other);
-  
+
   return *this;
 }
 
@@ -90,7 +90,7 @@ name(const Core::String& n)
 {
   getRocket()->SetAttribute("name", n);
 }
-  
+
 Core::String
 HTMLFormElement::
 method()

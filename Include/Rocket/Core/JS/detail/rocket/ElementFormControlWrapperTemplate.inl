@@ -37,13 +37,13 @@ setValueFromInnerText()
   //FIXME: is this the smartest way to do this?
 
   Rocket::Core::String result;
-  
+
   {
     Rocket::Core::ElementList elements;
-    
+
     //FIXME: Must we release references for each of these?
     this->GetElementsByTagName(elements, "#text");
-    
+
     for (Rocket::Core::ElementList::const_iterator w = elements.begin(), wend = elements.end();
       w != wend;
       ++w)
@@ -52,11 +52,11 @@ setValueFromInnerText()
       assert(r);
       assert(dynamic_cast<const Rocket::Core::ElementText*>(r));
       assert(r->GetTagName() == "#text");
-      
+
       static_cast<const Rocket::Core::ElementText*>(r)->GetText().ToUTF8(result,true);
     }
   }
-  
+
   this->SetValue(result);
 }
 

@@ -36,7 +36,7 @@ public:
   virtual void writeln(const Core::String& html);
 public:
   typedef v8::juice::cw::ClassWrap<self_type> CW;
-  
+
   static CW& getCW();
 protected:
   virtual RElementT* getRocket();

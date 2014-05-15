@@ -8,7 +8,7 @@
 #include <v8.h>
 
 
-namespace Rocket{ namespace Core{ namespace JS{ namespace juice{ 
+namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
 
 
   template<typename ElementT>
@@ -19,54 +19,54 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
     typedef typename v8::juice::convert::MemFuncInvocationCallbackCreator<self_type> ICM;
 
     CW & cw( CW::Instance() );
-  
+
     if( cw.IsSealed() )
     {
         return cw;
     }
 
     cw.Inherit(super::getCW());
-    
+
     cw.template BindGetter<Core::String,
               &self_type::type>
               ("type");
-             
+
     cw.template BindGetter<v8::Handle<v8::Value>,
               &self_type::form>
               ("form");
-    
-    
-    
-    
-    
+
+
+
+
+
 
     cw.template BindGetterSetter<Core::String,
                  &self_type::name,
                  void,const Core::String&,&self_type::name>
                  ("name");
-    
+
     cw.template BindGetterSetter<Core::String,
                  &self_type::defaultValue,
                  void,const Core::String&,&self_type::defaultValue>
                  ("defaultValue");
-    
+
     cw.template BindGetterSetter<Core::String,
                  &self_type::value,
                  void,const Core::String&,&self_type::value>
                  ("value");
-    
+
     cw.template BindGetterSetter<bool,
                  &self_type::disabled,
                  void,bool,&self_type::disabled>
                  ("disabled");
-    
+
     cw.template BindGetterSetter<bool,
                  &self_type::readOnly,
                  void,bool,&self_type::readOnly>
                  ( "readOnly");
-    
+
     cw.Seal(); // ends the binding process
-  
+
     return cw;
 
   }
@@ -77,18 +77,18 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
   HTMLFormControlTemplate()
     : super()
   {
-  
+
   }
-    
+
   template<typename ElementT>
   HTMLFormControlTemplate<ElementT>::
   HTMLFormControlTemplate(ElementT* element_)
     : super(element_)
   {
-  
+
   }
-  
-  
+
+
   template<typename ElementT>
   HTMLFormControlTemplate<ElementT>&
   HTMLFormControlTemplate<ElementT>::operator=(const HTMLFormControlTemplate<ElementT>& other) {
@@ -96,7 +96,7 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
     return *this;
   }
 
-  
+
 
 
   template<typename ElementT>
@@ -115,19 +115,19 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
   form()
   {
     v8::HandleScope handle_scope;
-    
+
     Core::Element* r = super::getRocket();
-    
+
     while( r ) {
       if (r->GetTagName() == "form")
         return handle_scope.Close(JS::juice::getV8HandleFromRocketWrapper(r, v8::Null()));
       r = r->GetParentNode();
     }
-    
+
     return handle_scope.Close(v8::Null());
   }
-  
-  
+
+
   template<typename ElementT>
   Core::String
   HTMLFormControlTemplate<ElementT>::
@@ -152,7 +152,7 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
     //FIXME:???????
     return super::getRocket()->GetAttribute("value", Core::String());
   }
-  
+
   template<typename ElementT>
   void
   HTMLFormControlTemplate<ElementT>::
@@ -169,7 +169,7 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
   {
     return super::getRocket()->GetValue();
   }
-  
+
   template<typename ElementT>
   void
   HTMLFormControlTemplate<ElementT>::
@@ -202,7 +202,7 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
   {
     return super::getRocket()->HasAttribute("readonly");
   }
-  
+
   template<typename ElementT>
   void
   HTMLFormControlTemplate<ElementT>::
@@ -213,16 +213,16 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
     else
       super::getRocket()->RemoveAttribute("readonly");
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
   // template<typename ElementT>
   // void
   // HTMLFormControlTemplate<ElementT>::
@@ -232,7 +232,7 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
     // super::innerHTML(v);
     // value(v);
   // }
-  
+
   // template<typename ElementT>
   // Core::String
   // HTMLFormControlTemplate<ElementT>::
@@ -242,12 +242,12 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
     // return value();
   // }
 
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
 
 } } } }//namespaces Rocket::Core::JS::juice
 

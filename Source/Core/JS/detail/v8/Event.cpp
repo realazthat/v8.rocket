@@ -17,12 +17,12 @@ Event::CW&
 Event::getCW() {
   typedef typename v8::juice::convert::MemFuncInvocationCallbackCreator<Event> ICM;
   CW & cw( CW::Instance() );
-  
+
   if( cw.IsSealed() )
   {
       return cw;
   }
-  
+
   cw.BindGetter<bool,&Event::bubbles>( "bubbles" );
   cw.BindGetter<bool,&Event::cancelable>( "cancelable" );
   cw.BindGetter<v8::Handle<v8::Value>,&Event::currentTarget>( "currentTarget" );
@@ -30,12 +30,12 @@ Event::getCW() {
   cw.BindGetter<int,&Event::eventPhase>( "eventPhase" );
   cw.BindGetter<v8::Handle<v8::Value>,&Event::target>( "target" );
   cw.BindGetter<Core::String,&Event::type>( "type" );
-  
+
   cw.Set( "stopPropagation", ICM::M0::Invocable<void, &Event::stopPropagation>);
 
-  
+
   cw.Seal(); // ends the binding process
-  
+
   return cw;
 }
 

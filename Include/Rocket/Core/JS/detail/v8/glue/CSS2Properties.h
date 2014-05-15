@@ -20,15 +20,15 @@ namespace cw{
        tmp::TypeList< convert::CtorForwarder0<Rocket::Core::JS::juice::CSS2Properties> >
     >
   {};
-  
+
   template <> struct DebugLevel<Rocket::Core::JS::juice::CSS2Properties>
     : Opt_Int<3> {};
-  
+
   template <>
   struct ToNative_SearchPrototypesForNative<Rocket::Core::JS::juice::CSS2Properties>
       : Opt_Bool<true>
   {};
-  
+
 
 
 }//namespace cw

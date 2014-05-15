@@ -31,7 +31,7 @@ public:
   self_type& operator=(const self_type& other);
 public:
   typedef v8::juice::cw::ClassWrap<self_type> CW;
-  
+
   static CW& getCW();
 private:
   friend class v8::juice::cw::WeakWrap<self_type>;

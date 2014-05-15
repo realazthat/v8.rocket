@@ -8,7 +8,7 @@
 #include <v8.h>
 
 
-namespace Rocket{ namespace Core{ namespace JS{ namespace juice{ 
+namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
 
 
   template<typename ElementT>
@@ -18,7 +18,7 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
   {
 // std::cout << __FILE__ ":" << __LINE__ << std::endl;
   }
-    
+
   template<typename ElementT>
   HTMLElementTemplate<ElementT>::
   HTMLElementTemplate(ElementT* element_)
@@ -27,14 +27,14 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
     assert(element);
     element->AddReference();
   }
-  
+
   template<typename ElementT>
   HTMLElementTemplate<ElementT>::
   ~HTMLElementTemplate(){
     assert(element);
     element->RemoveReference();
   }
-  
+
   template<typename ElementT>
   HTMLElementTemplate<ElementT>&
   HTMLElementTemplate<ElementT>::operator=(const HTMLElementTemplate<ElementT>& other) {
@@ -48,7 +48,7 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
       assert(element);
     }
     element->AddReference();
-    
+
     return *this;
   }
 
@@ -59,7 +59,7 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
     assert(element);
     return element;
   }
-  
+
 } } } }//namespaces Rocket::Core::JS::juice
 
 #endif

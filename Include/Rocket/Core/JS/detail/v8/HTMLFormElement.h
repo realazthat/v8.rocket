@@ -37,7 +37,7 @@ public:
 //Getters/Setters
   virtual Core::String name();
   virtual void name(const Core::String& n);
-  
+
   virtual Core::String method();
   virtual void method(const Core::String& m);
 public:
@@ -45,7 +45,7 @@ public:
   virtual void reset();
 public:
   typedef v8::juice::cw::ClassWrap<self_type> CW;
-  
+
   static CW& getCW();
 private:
   friend class v8::juice::cw::WeakWrap<self_type>;

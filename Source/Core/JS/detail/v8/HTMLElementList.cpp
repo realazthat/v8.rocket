@@ -12,7 +12,7 @@ namespace Rocket{ namespace Core{ namespace JS{ namespace juice{
 HTMLElementList::CW&
 HTMLElementList::getCW() {
   CW & cw( CW::Instance() );
-  
+
   if( cw.IsSealed() )
   {
       return cw;
@@ -22,9 +22,9 @@ HTMLElementList::getCW() {
   cw.BindGetter<Core::ElementList::size_type,&HTMLElementList::length>( "length" );
 
   cw.Set( "item", ICM::M1::Invocable<v8::Handle<v8::Value>, Core::ElementList::size_type, &HTMLElementList::item>);
-  
+
   cw.Seal(); // ends the binding process
-  
+
   return cw;
 }
 
@@ -48,7 +48,7 @@ HTMLElementList::~HTMLElementList()
 HTMLElementList& HTMLElementList::operator=(const HTMLElementList& other)
 {
   elements = other.elements;
-  
+
   return *this;
 }
 
@@ -74,7 +74,7 @@ HTMLElementList::item(Core::ElementList::size_type index)
 {
 
   v8::HandleScope handle_scope;
-  
+
   if ( index < elements.size() ) {
     Core::Element* element = *elements[index];
     return handle_scope.Close(JS::juice::getV8HandleFromRocketWrapper(element, v8::Null()));

@@ -30,7 +30,7 @@ public:
    */
   template<typename OutT>
   static void ReportException(const v8::TryCatch& try_catch, OutT& out);
-  
+
   /**
    * Utility JS exception reporter, doesn't report anything.
    * Use together with boost::bind, to make a valid function object.
@@ -39,7 +39,7 @@ public:
 
   /**
    * Compiles a script, and returns a handle to the result.
-   * 
+   *
    * Must be called within a valid v8 context scope.
    *
    * @param script_source A v8 string handle containing the javascript.
@@ -52,7 +52,7 @@ public:
   compile(const v8::Handle<v8::String> script_source,
     const v8::Handle<v8::String> script_name,
     HandleTryCatch handleTryCatch);
-  
+
 
   /**
    * Runs a script, and returns a handle to the result.
@@ -65,12 +65,12 @@ public:
    */
   template<typename HandleTryCatch>
   v8::Handle<v8::Value> run(v8::Handle<v8::Script> script, HandleTryCatch handleTryCatch);
-  
+
   /**
    * Returns the v8::Context handle.
    */
   v8::Handle<v8::Context> v8Context() const;
-  
+
   /**
    * Returns a handle to the HTMLDocument object.
    */

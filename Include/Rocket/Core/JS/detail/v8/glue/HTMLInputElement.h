@@ -22,17 +22,17 @@ namespace cw{
        tmp::TypeList< convert::CtorForwarder0<Rocket::Core::JS::juice::HTMLInputElement> >
     >
   {};
-  
+
   template <> struct DebugLevel<Rocket::Core::JS::juice::HTMLInputElement>
     : Opt_Int<3> {};
-  
+
   template <>
   struct ToNative_SearchPrototypesForNative<Rocket::Core::JS::juice::HTMLInputElement>
       : Opt_Bool<true>
   {};
-  
 
-  
+
+
   template <>
   struct Factory< Rocket::Core::JS::juice::HTMLFormControlTemplate<Rocket::Controls::ElementFormControlInput> >
       : Factory_CtorForwarder<Rocket::Core::JS::juice::HTMLFormControlTemplate<Rocket::Controls::ElementFormControlInput>,
@@ -42,15 +42,15 @@ namespace cw{
       >
   {
   };
-  
+
   template <>
   struct DebugLevel< Rocket::Core::JS::juice::HTMLFormControlTemplate<Rocket::Controls::ElementFormControlInput> > : Opt_Int<3> {};
-  
+
   template <>
   struct ToNative_SearchPrototypesForNative< Rocket::Core::JS::juice::HTMLFormControlTemplate<Rocket::Controls::ElementFormControlInput> >
       : Opt_Bool<true>
   {};
-  
+
 
 }//namespace cw
 } }//namespaces v8::juice
